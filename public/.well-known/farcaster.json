@@ -1,1 +1,16 @@
-{}
+{
+  "accountAssociation": {
+    "header": "eyJmaWQiOjE0MzA5NDgsInR5cGUiOiJjdXN0b2R5Iiwia2V5IjoiMHg5ZTJkYWVkNDk4MEE4MEEwNzE5NTdkRmYxRjlhN0YzRWY4Q0I3ZjdjIn0",
+    "payload": "eyJkb21haW4iOiJnZ2R3Zy5jb20ifQ",
+    "signature": "vGKrQhXK+xS4MwuZK2X1OCLHm1uoTaANR9frWHp6i4ojK8HMn6qLQ4Or0d2dddXeSoyYr3FNqoGaBKscmrYTQhs="
+  },
+  "frame": {
+    "version": "next",
+    "name": "Mini App Demo",
+    "iconUrl": "https://ggdwg.com/icon.png",
+    "homeUrl": "https://ggdwg.com",
+    "splashImageUrl": "https://ggdwg.com/splash.png",
+    "splashBackgroundColor": "#1976d2"
+  },
+  "domain": "ggdwg.com"
+}

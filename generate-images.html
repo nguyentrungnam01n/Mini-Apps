@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generate Mini App Images</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+        .image-container {
+            margin: 30px 0;
+            border: 2px solid #ddd;
+            padding: 20px;
+            border-radius: 8px;
+        }
+        canvas {
+            border: 1px solid #ccc;
+            display: block;
+            margin: 20px 0;
+        }
+        button {
+            background: #1976d2;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 5px;
+        }
+        button:hover {
+            background: #1565c0;
+        }
+        h2 {
+            color: #1976d2;
+        }
+    </style>
+</head>
+<body>
+    <h1>🎨 Generate Mini App Images</h1>
+    <p>Click the buttons below to generate and download icon.png and splash.png</p>
+
+    <div class="image-container">
+        <h2>App Icon (512x512px)</h2>
+        <canvas id="iconCanvas" width="512" height="512"></canvas>
+        <button onclick="generateIcon()">Generate Icon</button>
+        <button onclick="downloadImage('iconCanvas', 'icon.png')">Download icon.png</button>
+    </div>
+
+    <div class="image-container">
+        <h2>Splash Screen (1200x630px)</h2>
+        <canvas id="splashCanvas" width="1200" height="630"></canvas>
+        <button onclick="generateSplash()">Generate Splash</button>
+        <button onclick="downloadImage('splashCanvas', 'splash.png')">Download splash.png</button>
+    </div>
+
+    <script>
+        // Generate Icon
+        function generateIcon() {
+            const canvas = document.getElementById('iconCanvas');
+            const ctx = canvas.getContext('2d');
+            
+            // Background gradient
+            const gradient = ctx.createLinearGradient(0, 0, 512, 512);
+            gradient.addColorStop(0, '#1976d2');
+            gradient.addColorStop(1, '#1565c0');
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, 512, 512);
+            
+            // Add rounded corners effect
+            ctx.globalCompositeOperation = 'destination-in';
+            ctx.beginPath();
+            ctx.roundRect(0, 0, 512, 512, 80);
+            ctx.fill();
+            ctx.globalCompositeOperation = 'source-over';
+            
+            // Draw icon symbol (simple geometric shape)
+            ctx.fillStyle = 'white';
+            ctx.font = 'bold 240px Arial';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText('🚀', 256, 280);
+            
+            // Add text
+            ctx.fillStyle = 'white';
+            ctx.font = 'bold 48px Arial';
+            ctx.fillText('Mini App', 256, 450);
+        }
+
+        // Generate Splash
+        function generateSplash() {
+            const canvas = document.getElementById('splashCanvas');
+            const ctx = canvas.getContext('2d');
+            
+            // Background gradient
+            const gradient = ctx.createLinearGradient(0, 0, 0, 630);
+            gradient.addColorStop(0, '#1976d2');
+            gradient.addColorStop(1, '#0d47a1');
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, 1200, 630);
+            
+            // Add decorative circles
+            ctx.globalAlpha = 0.1;
+            ctx.fillStyle = 'white';
+            ctx.beginPath();
+            ctx.arc(200, 150, 100, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.beginPath();
+            ctx.arc(1000, 500, 150, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.globalAlpha = 1;
+            
+            // Main content
+            ctx.fillStyle = 'white';
+            ctx.font = 'bold 120px Arial';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText('🚀', 600, 220);
+            
+            ctx.font = 'bold 72px Arial';
+            ctx.fillText('Mini App Demo', 600, 380);
+            
+            ctx.font = '36px Arial';
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
+            ctx.fillText('Powered by Farcaster Frame SDK', 600, 480);
+        }
+
+        // Download image
+        function downloadImage(canvasId, filename) {
+            const canvas = document.getElementById(canvasId);
+            const link = document.createElement('a');
+            link.download = filename;
+            link.href = canvas.toDataURL('image/png');
+            link.click();
+        }
+
+        // Auto-generate on load
+        window.onload = function() {
+            generateIcon();
+            generateSplash();
+        };
+    </script>
+</body>
+</html>
